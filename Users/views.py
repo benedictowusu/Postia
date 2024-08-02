@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import SigninForm, SignupForm
+from django.conf import settings
 
 def signup(request):
     if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
+        signupform = SignupForm(request.POST)
+        if signupform.is_valid():
+            user = signupform.save()
+            backend = settings.AUTHENTICATION_BACKENDS[0]
+            user = authenticate(email=signupform.cleaned_data.get('email'), password=signupform.cleaned_data.get('password1'), backend=backend)
+            login(request, user, backend=backend)
             return redirect('home:home')
     else:
         signupform = SignupForm()
@@ -15,10 +18,10 @@ def signup(request):
 
 def Signin(request):
     if request.method == 'POST':
-        form = SigninForm(request, data=request.POST)
-        if form.is_valid():
-            email = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+        signinform = SigninForm(request, data=request.POST)
+        if signinform.is_valid():
+            email = signinform.cleaned_data.get('username')
+            password = signinform.cleaned_data.get('password')
             user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)

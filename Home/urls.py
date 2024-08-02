@@ -1,9 +1,9 @@
 from django.urls import path
-from . import views
+from .views import home, navbar
 
 app_name = 'home'
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('nav/', views.navbar, name='navbar'),
+    path('', home, name='home'),
+    path('nav/', navbar, name='navbar'),
 ]

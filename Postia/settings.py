@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     
     #Apps
     'Users',
+    'Home',
 ]
 
 AUTH_USER_MODEL = 'Users.CustomUser'
@@ -75,7 +76,7 @@ WSGI_APPLICATION = 'Postia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Postia',
+        'NAME': 'Postias',
         'USER': 'root',
         'PASSWORD': '0546541122Ob',
         'HOST': 'localhost',
