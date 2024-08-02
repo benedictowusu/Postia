@@ -10,8 +10,8 @@ def signup(request):
             login(request, user)
             return redirect('home:home')
     else:
-        form = SignupForm()
-    return render(request, 'signup.html', {'form': form})
+        signupform = SignupForm()
+    return render(request, 'signup.html', {'signupform': signupform})
 
 def Signin(request):
     if request.method == 'POST':
