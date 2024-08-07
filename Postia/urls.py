@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -11,6 +10,7 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include("Users.urls")),
     path('', include('Home.urls')),
+    path('', include("Posts.urls")),
 ]
 
 
